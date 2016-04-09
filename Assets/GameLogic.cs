@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameLogic : MonoBehaviour
 {
-
+    
     private Board game_board = new Board();
 
 	// Use this for initialization

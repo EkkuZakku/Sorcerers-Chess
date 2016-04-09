@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Board : MonoBehaviour
 {
+    
     private class BoardX
     {
         public const int _A = 0;
@@ -29,20 +30,6 @@ public class Board : MonoBehaviour
 
     }
 
-    private class PieceNum
-    {
-        public const int None = 0;
-        public const int Pawn = 1;
-        public const int Knight = 2;
-        public const int Bishop = 3;
-        public const int Rook = 4;
-        public const int Queen = 5;
-        public const int King = 6;
-        public const int White = 0;
-        public const int Black = 7;
-
-    }
-
     private int[,] board_xy = new int[8,8];
 
     // Use this for initialization
@@ -51,39 +38,51 @@ public class Board : MonoBehaviour
 
         for (int i = 0; i < 8; i++)
         {
-            board_xy[i, BoardY._2] = (PieceNum.Pawn + PieceNum.White);
-            board_xy[i, BoardY._7] = (PieceNum.Pawn + PieceNum.Black);
+            board_xy[i, BoardY._2] = (ChessTypes.Piece.Pawn + ChessTypes.Piece.White);
+            board_xy[i, BoardY._7] = (ChessTypes.Piece.Pawn + ChessTypes.Piece.Black);
             if (i == 0 || i == 8)
             {
-                board_xy[i, BoardY._1] = PieceNum.Rook + PieceNum.White;
-                board_xy[i, BoardY._8] = PieceNum.Rook + PieceNum.Black;
+                board_xy[i, BoardY._1] = ChessTypes.Piece.Rook + ChessTypes.Piece.White;
+                board_xy[i, BoardY._8] = ChessTypes.Piece.Rook + ChessTypes.Piece.Black;
 
             }
             else if (i == 1 || i == 7)
             {
-                board_xy[i, BoardY._1] = PieceNum.Knight + PieceNum.White;
-                board_xy[i, BoardY._8] = PieceNum.Knight + PieceNum.Black;
+                board_xy[i, BoardY._1] = ChessTypes.Piece.Knight + ChessTypes.Piece.White;
+                board_xy[i, BoardY._8] = ChessTypes.Piece.Knight + ChessTypes.Piece.Black;
 
             }
             else if (i == 2 || i == 6)
             {
-                board_xy[i, BoardY._1] = PieceNum.Knight + PieceNum.White;
-                board_xy[i, BoardY._8] = PieceNum.Knight + PieceNum.Black;
+                board_xy[i, BoardY._1] = ChessTypes.Piece.Knight + ChessTypes.Piece.White;
+                board_xy[i, BoardY._8] = ChessTypes.Piece.Knight + ChessTypes.Piece.Black;
 
             }
 
         }
 
-        board_xy[BoardX._D, BoardY._1] = PieceNum.Queen + PieceNum.White;
-        board_xy[BoardX._D, BoardY._8] = PieceNum.Queen + PieceNum.Black;
-        board_xy[BoardX._E, BoardY._1] = PieceNum.King + PieceNum.White;
-        board_xy[BoardX._E, BoardY._8] = PieceNum.King + PieceNum.Black;
+        board_xy[BoardX._D, BoardY._1] = ChessTypes.Piece.Queen + ChessTypes.Piece.White;
+        board_xy[BoardX._D, BoardY._8] = ChessTypes.Piece.Queen + ChessTypes.Piece.Black;
+        board_xy[BoardX._E, BoardY._1] = ChessTypes.Piece.King + ChessTypes.Piece.White;
+        board_xy[BoardX._E, BoardY._8] = ChessTypes.Piece.King + ChessTypes.Piece.Black;
 
     }
 
     // Update is called once per frame
     void Update()
     {
+
+    }
+
+    public int Get_Piece_At_Location(int x, int y)
+    {
+        return board_xy[x, y];
+
+    }
+
+    public void Set_Piece_At_Location(int x, int y, int piece)
+    {
+        board_xy[x, y] = piece;
 
     }
 
