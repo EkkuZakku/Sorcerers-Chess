@@ -5,6 +5,7 @@ public class GameLogic : MonoBehaviour
 {
     
     private Board game_board = new Board();
+    private int PieceSelected = -1;
 
 	// Use this for initialization
 	void Start ()
@@ -31,5 +32,22 @@ public class GameLogic : MonoBehaviour
     {
 	
 	}
+
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (PieceSelected != -1)
+            {
+
+            }
+            else
+            {
+                PieceSelected = 0;
+            }
+
+        }
+
+    }
 
 }

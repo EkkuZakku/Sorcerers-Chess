@@ -69,10 +69,10 @@ public class Board : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    //void Update()
+    //{
 
-    }
+    //}
 
     public int Get_Piece_At_Location(int x, int y)
     {
@@ -80,9 +80,41 @@ public class Board : MonoBehaviour
 
     }
 
-    public void Set_Piece_At_Location(int x, int y, int piece)
+    public void Move_Piece_To_Location(int origin_x, int origin_y, int destination_x, int destination_y, int piece)
+    {
+        if (Check_Valid_Move(origin_x,origin_y,destination_x,destination_y,piece))
+        {
+            Set_Piece_At_Location(destination_x, destination_y, piece);
+            Clear_Piece_At_Location(origin_x, origin_y);
+
+        }
+
+    }
+
+    private void Set_Piece_At_Location(int x, int y, int piece)
     {
         board_xy[x, y] = piece;
+
+    }
+
+    private void Clear_Piece_At_Location(int x, int y)
+    {
+        board_xy[x, y] = ChessTypes.Piece.None;
+
+    }
+
+    public bool Check_Valid_Move(int[] origin, int destination_x, int destination_y, int piece)
+    {
+        return Check_Valid_Move(origin[0], origin[1], destination_x, destination_y, piece);
+
+    }
+
+    public bool Check_Valid_Move(int origin_x, int origin_y, int destination_x, int destination_y, int piece)
+    {
+
+        return true;
+
+        return false;
 
     }
 
