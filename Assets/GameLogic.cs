@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public static class GameLogic : MonoBehaviour
+public class GameLogic : MonoBehaviour
 {
     
     private static Board game_board = new Board();
     public static bool PieceSelected { get; set; }
     public static ChessTypes.XY SelectedPieceLocation { get; set; }
+    public static string SelectedPieceName { get; set; }
 
     public GameLogic()
     {
@@ -72,11 +73,22 @@ public static class GameLogic : MonoBehaviour
     }
 
     // Update is called once per frame
-    public static void MovePiece(ChessTypes.XY destination)
+    public static void MovePiece(ChessTypes.XY destination,string sender)
     {
         ChessTypes.XY origin = SelectedPieceLocation;
         //ChessTypes.Piece originpiece = game_board.Get_Piece_At_Location(origin);
-        game_board.Make_Move(origin, destination);
+        if (game_board.Make_Move(origin, destination))
+        {
+            UpdateLocation(destination, sender);
+
+        }
+
+    }
+
+    private static void UpdateLocation(ChessTypes.XY destination, string sender)
+    {
+        GameObject piece = GameObject.Find(sender);
+        piece.transform.position = new Vector3((float)destination.x, 0.5f, (float)destination.y);
 
     }
 

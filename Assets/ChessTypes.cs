@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public static class ChessTypes : MonoBehaviour
+public static class ChessTypes
 {
     public class Piece
     {
@@ -33,7 +33,7 @@ public static class ChessTypes : MonoBehaviour
 
     }
 
-    public static struct Pieces
+    public struct Pieces
     {
         public const int None = 0;
         public const int Pawn = 1;
@@ -66,7 +66,7 @@ public static class ChessTypes : MonoBehaviour
 
     }
 
-    public struct XY : int
+    public struct XY
     {
         public int x;
         public int y;

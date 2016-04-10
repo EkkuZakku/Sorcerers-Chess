@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Board : MonoBehaviour
+public class Board
 {
 
     private ChessTypes.Piece[,] board_xy = new ChessTypes.Piece[8, 8];
@@ -72,13 +72,15 @@ public class Board : MonoBehaviour
 
     }
 
-    public void Make_Move(ChessTypes.XY origin, ChessTypes.XY destination)
+    public bool Make_Move(ChessTypes.XY origin, ChessTypes.XY destination)
     {
         if (Check_Valid_Move(origin, destination))
         {
             Move_Piece_To_Location(origin, destination);
+            return true;
 
         }
+        return false;
 
     }
 
@@ -133,7 +135,7 @@ public class Board : MonoBehaviour
             else if (ChessTypes.Check_Valid_Movement(origin, destination, this))
             {
                 Board temp_board = new Board(board_xy);
-                temp_board.Move_Piece_To_Location(origin, destination, origin_piece);
+                temp_board.Move_Piece_To_Location(origin, destination);
                 if (ChessTypes.In_Check(temp_board))
                     return false;
                 else

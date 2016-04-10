@@ -19,17 +19,19 @@ public class PieceHandler : MonoBehaviour
 
     void OnMouseOver()
     {
+        print("OnMouseOver in PieceHandler");
         if (Input.GetMouseButtonDown(0))
         {
             if (GameLogic.PieceSelected == false)
             {
                 GameLogic.PieceSelected = true;
                 GameLogic.SelectedPieceLocation = location;
+                GameLogic.SelectedPieceName = this.name;
 
             }
             else
             {
-                GameLogic.MovePiece(location);
+                GameLogic.MovePiece(location,this.name);
                 GameLogic.PieceSelected = false;
 
             }
