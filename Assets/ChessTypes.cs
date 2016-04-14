@@ -107,43 +107,45 @@ public static class ChessTypes
 
     public static bool Check_Valid_Movement(ChessTypes.XY origin, ChessTypes.XY destination, Board board)
     {
+        MonoBehaviour.print("ChessTypes Check_Valid_Movement");
         ChessTypes.Piece origin_piece = board.Get_Piece_At_Location(origin);
-        //ChessTypes.Piece destination_piece = board.Get_Piece_At_Location(origin);
+        //ChessTypes.Piece destination_piece = board.Get_Piece_At_Location(destination);
         switch (origin_piece.PieceType)
         {
             case (ChessTypes.Pieces.Pawn):
                 {
-                    if (Valid_Pawn_Movement(origin_piece, origin, destination))
+                    MonoBehaviour.print("ChessTypes Check_Valid_Movement Pawn");
+                    if (Valid_Pawn_Movement(origin_piece, origin, destination, board))
                         return true;
                     break;
                 }
             case (ChessTypes.Pieces.Knight):
                 {
-                    if (Valid_Knight_Movement(origin_piece, origin, destination))
+                    if (Valid_Knight_Movement(origin_piece, origin, destination, board))
                         return true;
                     break;
                 }
             case (ChessTypes.Pieces.Bishop):
                 {
-                    if (Valid_Bishop_Movement(origin_piece, origin, destination))
+                    if (Valid_Bishop_Movement(origin_piece, origin, destination, board))
                         return true;
                     break;
                 }
             case (ChessTypes.Pieces.Rook):
                 {
-                    if (Valid_Rook_Movement(origin_piece, origin, destination))
+                    if (Valid_Rook_Movement(origin_piece, origin, destination, board))
                         return true;
                     break;
                 }
             case (ChessTypes.Pieces.Queen):
                 {
-                    if (Valid_Bishop_Movement(origin_piece, origin, destination) || Valid_Rook_Movement(origin_piece, origin, destination))
+                    if (Valid_Bishop_Movement(origin_piece, origin, destination, board) || Valid_Rook_Movement(origin_piece, origin, destination, board))
                         return true;
                     break;
                 }
             case (ChessTypes.Pieces.King):
                 {
-                    if (Valid_King_Movement(origin_piece, origin, destination))
+                    if (Valid_King_Movement(origin_piece, origin, destination, board))
                         return true;
                     break;
                 }
@@ -155,24 +157,30 @@ public static class ChessTypes
 
     }
 
-    private static bool Valid_Pawn_Movement(Piece origin_piece, XY origin, XY destination)
+    private static bool Valid_Pawn_Movement(Piece origin_piece, XY origin, XY destination, Board board)
     {
         if (origin_piece.Color == ChessTypes.Pieces.White)
         {
-            if (destination.y < origin.y)
+            MonoBehaviour.print("Return 5");
+            if (destination.y > origin.y)
             {
-                if (origin.y == BoardY._2)
+                MonoBehaviour.print("Return 4");
+                if (destination.y > origin.y)
                 {
+                    MonoBehaviour.print("Return 3");
                     if (origin.x == destination.x)
                     {
-                        if (destination.y > origin.y && destination.y <= BoardY._4)
+                        MonoBehaviour.print("Return 1");
+                        if (origin.y == BoardY._2 && destination.y <= BoardY._4)
                             return true;
-                        else
-                            return false;
+                        else if (destination.y - origin.y == 1)
+                            return true;
                     }
-                    else if (origin.x - 1 == destination.y || origin.x + 1 == destination.y)
+                    MonoBehaviour.print((origin.x - 1).ToString() + " || " + (origin.x + 1).ToString() + " == " + destination.y.ToString());
+                    if (origin.x - 1 == destination.y || origin.x + 1 == destination.x)
                     {
-                        if (origin.y + 1 == destination.y)
+                        MonoBehaviour.print("Return 2");
+                        if (origin.y + 1 == destination.y && board.Get_Piece_At_Location(destination).PieceType != Pieces.None)
                             return true;
                         else
                             return false;
@@ -224,25 +232,25 @@ public static class ChessTypes
 
     }
 
-    private static bool Valid_Knight_Movement(Piece origin_piece, XY origin, XY destination)
+    private static bool Valid_Knight_Movement(Piece origin_piece, XY origin, XY destination, Board board)
     {
         return true;
 
     }
 
-    private static bool Valid_Bishop_Movement(Piece origin_piece, XY origin, XY destination)
+    private static bool Valid_Bishop_Movement(Piece origin_piece, XY origin, XY destination, Board board)
     {
         return true;
 
     }
 
-    private static bool Valid_Rook_Movement(Piece origin_piece, XY origin, XY destination)
+    private static bool Valid_Rook_Movement(Piece origin_piece, XY origin, XY destination, Board board)
     {
         return true;
 
     }
 
-    private static bool Valid_King_Movement(Piece origin_piece, XY origin, XY destination)
+    private static bool Valid_King_Movement(Piece origin_piece, XY origin, XY destination, Board board)
     {
         return true;
 

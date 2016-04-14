@@ -72,13 +72,15 @@ public class SquareHandler : MonoBehaviour
 
     void OnMouseOver()
     {
-        print("OnMouseOver in PieceHandler");
+        //print("OnMouseOver in SquareHandler");
         if (Input.GetMouseButtonDown(0))
         {
             if (GameLogic.PieceSelected == true)
             {
+                //print("SquareHandler trying to move "+GameLogic.SelectedPieceName);
                 GameLogic.MovePiece(location, GameLogic.SelectedPieceName);
                 GameLogic.PieceSelected = false;
+                GameLogic.SelectedPieceName = "";
 
             }
 

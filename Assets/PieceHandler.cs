@@ -19,7 +19,7 @@ public class PieceHandler : MonoBehaviour
 
     void OnMouseOver()
     {
-        print("OnMouseOver in PieceHandler");
+        //print("OnMouseOver in PieceHandler");
         if (Input.GetMouseButtonDown(0))
         {
             if (GameLogic.PieceSelected == false)
@@ -27,6 +27,7 @@ public class PieceHandler : MonoBehaviour
                 GameLogic.PieceSelected = true;
                 GameLogic.SelectedPieceLocation = location;
                 GameLogic.SelectedPieceName = this.name;
+                //print("PieceHandler name: " + this.name + " and location: " + location.x.ToString() + "," + location.y.ToString());
 
             }
             else
