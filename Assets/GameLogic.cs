@@ -8,14 +8,6 @@ public class GameLogic : MonoBehaviour
     public static bool PieceSelected { get; set; }
     public static ChessTypes.XY SelectedPieceLocation { get; set; }
     public static string SelectedPieceName { get; set; }
-    GameObject a2pawn = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-    GameObject b2pawn = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-    GameObject c2pawn = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-    GameObject d2pawn = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-    GameObject e2pawn = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-    GameObject f2pawn = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-    GameObject g2pawn = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-    GameObject h2pawn = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
 
     public GameLogic()
     {
@@ -32,6 +24,14 @@ public class GameLogic : MonoBehaviour
 
     private void PlacePieces()
     {
+        GameObject a2pawn = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        GameObject b2pawn = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        GameObject c2pawn = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        GameObject d2pawn = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        GameObject e2pawn = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        GameObject f2pawn = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        GameObject g2pawn = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        GameObject h2pawn = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
         a2pawn.AddComponent<PieceHandler>();
         a2pawn.name = "A2PAWN";
         PieceHandler a2pawnhandler = a2pawn.GetComponent<PieceHandler>();
@@ -81,24 +81,31 @@ public class GameLogic : MonoBehaviour
     }
 
     // Update is called once per frame
-    public static void MovePiece(ChessTypes.XY destination,string sender)
+    public static void MovePiece(ChessTypes.XY destination, string sender = "")
     {
         ChessTypes.XY origin = SelectedPieceLocation;
         //ChessTypes.Piece originpiece = game_board.Get_Piece_At_Location(origin);
-        print("GameLogic MovePiece trying to move "+sender);
+        print("GameLogic MovePiece trying to move " + SelectedPieceName);
         if (game_board.Make_Move(origin, destination))
         {
-            UpdateLocation(destination, sender);
+            UpdateLocation(destination, SelectedPieceName);
+            if (sender != "")
+            {
+                GameObject destroyed_piece = GameObject.Find(sender);
+                GameObject.DestroyObject(destroyed_piece);
+
+            }
 
         }
 
     }
 
-    private static void UpdateLocation(ChessTypes.XY destination, string sender)
+    private static void UpdateLocation(ChessTypes.XY destination, string selectedpiece)
     {
-        GameObject piece = GameObject.Find(sender);
-        //print("GameLogic UpdateLocation trying to move " + sender + " to " + destination.x.ToString() + "," + destination.y.ToString());
+        GameObject piece = GameObject.Find(selectedpiece);
+        print("GameLogic UpdateLocation trying to move " + selectedpiece + " from " + piece.transform.position.x.ToString() + "," + piece.transform.position.z.ToString() + " to " + destination.x.ToString() + "," + destination.y.ToString());
         piece.transform.position = new Vector3((float)destination.x, 0.5f, (float)destination.y);
+        print("GameLogic UpdateLocation moved " + selectedpiece + " to " + piece.transform.position.x.ToString() + "," + piece.transform.position.z.ToString());
         PieceHandler piecehandler = piece.GetComponent<PieceHandler>();
         piecehandler.location = destination;
 

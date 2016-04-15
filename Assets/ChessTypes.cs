@@ -92,6 +92,8 @@ public static class ChessTypes
 
     }
 
+    public static readonly string[] BoardXInverse = { "A", "B", "C", "D", "E", "F", "G", "H" };
+
     public class BoardY
     {
         public const int _1 = 0;
@@ -104,6 +106,8 @@ public static class ChessTypes
         public const int _8 = 7;
 
     }
+
+    public static readonly string[] BoardYInverse = { "1", "2", "3", "4", "5", "6", "7", "8" };
 
     public static bool Check_Valid_Movement(ChessTypes.XY origin, ChessTypes.XY destination, Board board)
     {
@@ -176,8 +180,8 @@ public static class ChessTypes
                         else if (destination.y - origin.y == 1)
                             return true;
                     }
-                    MonoBehaviour.print((origin.x - 1).ToString() + " || " + (origin.x + 1).ToString() + " == " + destination.y.ToString());
-                    if (origin.x - 1 == destination.y || origin.x + 1 == destination.x)
+                    MonoBehaviour.print((origin.x - 1).ToString() + " || " + (origin.x + 1).ToString() + " == " + destination.x.ToString());
+                    if (origin.x - 1 == destination.x || origin.x + 1 == destination.x)
                     {
                         MonoBehaviour.print("Return 2");
                         if (origin.y + 1 == destination.y && board.Get_Piece_At_Location(destination).PieceType != Pieces.None)
@@ -209,9 +213,9 @@ public static class ChessTypes
                         else
                             return false;
                     }
-                    else if (origin.x - 1 == destination.y || origin.x + 1 == destination.y)
+                    else if (origin.x - 1 == destination.x || origin.x + 1 == destination.x)
                     {
-                        if (origin.y - 1 == destination.y)
+                        if (origin.y - 1 == destination.x)
                             return true;
                         else
                             return false;
@@ -260,4 +264,20 @@ public static class ChessTypes
     {
         return false;
     }
+
+    public static int GetX(string x)
+    {
+        char newx = x[0];
+        int return_x = char.ToUpper(newx) - 64;
+        return return_x;
+
+    }
+
+    public static int GetY(string y)
+    {
+        int return_y = int.Parse(y) - 1;
+        return return_y;
+
+    }
+
 }

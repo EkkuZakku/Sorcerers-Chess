@@ -32,7 +32,7 @@ public class PieceHandler : MonoBehaviour
             }
             else
             {
-                GameLogic.MovePiece(location,this.name);
+                GameLogic.MovePiece(location, this.name);
                 GameLogic.PieceSelected = false;
 
             }

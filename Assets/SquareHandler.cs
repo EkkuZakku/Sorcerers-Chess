@@ -78,7 +78,7 @@ public class SquareHandler : MonoBehaviour
             if (GameLogic.PieceSelected == true)
             {
                 //print("SquareHandler trying to move "+GameLogic.SelectedPieceName);
-                GameLogic.MovePiece(location, GameLogic.SelectedPieceName);
+                GameLogic.MovePiece(location);
                 GameLogic.PieceSelected = false;
                 GameLogic.SelectedPieceName = "";
 
