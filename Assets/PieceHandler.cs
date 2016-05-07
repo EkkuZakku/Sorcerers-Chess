@@ -8,7 +8,7 @@ public class PieceHandler : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-	    
+        //print("PieceHandler Start");
 	}
 	
 	// Update is called once per frame
@@ -27,13 +27,14 @@ public class PieceHandler : MonoBehaviour
                 GameLogic.PieceSelected = true;
                 GameLogic.SelectedPieceLocation = location;
                 GameLogic.SelectedPieceName = this.name;
-                //print("PieceHandler name: " + this.name + " and location: " + location.x.ToString() + "," + location.y.ToString());
+                print("PieceHandler name: " + this.name + " and location: " + location.x.ToString() + "," + location.y.ToString());
 
             }
             else
             {
                 GameLogic.MovePiece(location, this.name);
                 GameLogic.PieceSelected = false;
+                print("PieceSelected = " + GameLogic.PieceSelected.ToString());
 
             }
 

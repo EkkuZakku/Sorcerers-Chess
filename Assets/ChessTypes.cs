@@ -33,6 +33,8 @@ public static class ChessTypes
 
     }
 
+    public static readonly string[] PieceTypeInverse = { "None", "Pawn", "Knight", "Bishop", "Rook", "Queen", "King" };
+
     public struct Pieces
     {
         public const int None = 0;

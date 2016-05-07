@@ -34,19 +34,20 @@ public class Board
         {
             board_xy[i, ChessTypes.BoardY._2] = new ChessTypes.Piece(ChessTypes.Pieces.Pawn, ChessTypes.Pieces.White);
             board_xy[i, ChessTypes.BoardY._7] = new ChessTypes.Piece(ChessTypes.Pieces.Pawn, ChessTypes.Pieces.Black);
-            if (i == 0 || i == 8)
+
+            if (i == 0 || i == 7)
             {
                 board_xy[i, ChessTypes.BoardY._1] = new ChessTypes.Piece(ChessTypes.Pieces.Rook, ChessTypes.Pieces.White);
                 board_xy[i, ChessTypes.BoardY._8] = new ChessTypes.Piece(ChessTypes.Pieces.Rook, ChessTypes.Pieces.Black);
 
             }
-            else if (i == 1 || i == 7)
+            else if (i == 1 || i == 6)
             {
                 board_xy[i, ChessTypes.BoardY._1] = new ChessTypes.Piece(ChessTypes.Pieces.Knight, ChessTypes.Pieces.White);
                 board_xy[i, ChessTypes.BoardY._8] = new ChessTypes.Piece(ChessTypes.Pieces.Knight, ChessTypes.Pieces.Black);
 
             }
-            else if (i == 2 || i == 6)
+            else if (i == 2 || i == 5)
             {
                 board_xy[i, ChessTypes.BoardY._1] = new ChessTypes.Piece(ChessTypes.Pieces.Knight, ChessTypes.Pieces.White);
                 board_xy[i, ChessTypes.BoardY._8] = new ChessTypes.Piece(ChessTypes.Pieces.Knight, ChessTypes.Pieces.Black);
@@ -59,7 +60,6 @@ public class Board
         board_xy[ChessTypes.BoardX._D, ChessTypes.BoardY._8] = new ChessTypes.Piece(ChessTypes.Pieces.Queen, ChessTypes.Pieces.Black);
         board_xy[ChessTypes.BoardX._E, ChessTypes.BoardY._1] = new ChessTypes.Piece(ChessTypes.Pieces.King, ChessTypes.Pieces.White);
         board_xy[ChessTypes.BoardX._E, ChessTypes.BoardY._8] = new ChessTypes.Piece(ChessTypes.Pieces.King, ChessTypes.Pieces.Black);
-        board_xy[ChessTypes.BoardX._E, ChessTypes.BoardY._2] = new ChessTypes.Piece(ChessTypes.Pieces.King, ChessTypes.Pieces.Black);
 
     }
 
